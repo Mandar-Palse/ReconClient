@@ -64,16 +64,18 @@ export default function LoginPage() {
     setForm(prev => ({ ...prev, [key]: e.target.value }));
 
   return (
-    <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+    <Box sx={{ height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
       {/* Left Side - Login Form */}
       <Box 
         sx={{ 
           width: { xs: '100%', md: '35%' },
+          height: '100%',
+          overflow: 'hidden',
           display: 'flex', 
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          p: 4,
+          p: { xs: 2, md: 2 },
           position: 'relative',
           backgroundColor: '#f8fbfc'
         }}
@@ -92,7 +94,7 @@ export default function LoginPage() {
           sx={{
             width: '100%',
             maxWidth: 400,
-            p: { xs: 2, md: 4 },
+            p: { xs: 2, md: 3 },
             zIndex: 1,
             display: 'flex',
             flexDirection: 'column',
@@ -109,23 +111,23 @@ export default function LoginPage() {
             }
           }}
         >
-          <Box mb={5} sx={{ position: 'relative', display: 'inline-block', pr: 4 }}>
+          <Box mb={2.5} sx={{ position: 'relative', display: 'inline-block', pr: 4 }}>
             <img 
               src="/paysis_logo.png" 
               alt="Paysis by India1 Logo" 
-              width={160} 
+              width={140} 
               style={{ objectFit: 'contain' }}
             />
           </Box>
 
-          <Typography variant="h5" fontWeight={700} gutterBottom sx={{ mb: 3 }}>
+          <Typography variant="h5" fontWeight={700} gutterBottom sx={{ mb: 1.5 }}>
             Login
           </Typography>
 
-          {error && <Alert severity="error" sx={{ mb: 3 }}>{error}</Alert>}
+          {error && <Alert severity="error" sx={{ mb: 1.5 }}>{error}</Alert>}
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ flexGrow: 1 }}>
-            <Stack spacing={3}>
+            <Stack spacing={2}>
               <Box>
                 <Typography variant="body2" fontWeight={600} mb={1}>User ID</Typography>
                 <TextField
@@ -168,9 +170,9 @@ export default function LoginPage() {
                 variant="contained"
                 fullWidth
                 sx={{ 
-                  mt: 2, 
-                  mb: 2, 
-                  py: 1.5, 
+                  mt: 1.5, 
+                  mb: 1.5, 
+                  py: 1, 
                   backgroundColor: '#0a3d75',
                   textTransform: 'none',
                   fontWeight: 600,
@@ -193,14 +195,14 @@ export default function LoginPage() {
             </Stack>
           </Box>
 
-          <Box mt={6} textAlign="center">
-            <Typography variant="caption" color="text.secondary" display="block">
+          <Box mt={3} textAlign="center">
+            <Typography variant="caption" color="text.secondary" display="block" sx={{ lineHeight: 1.2 }}>
               By proceeding you acknowledge that you have read,
             </Typography>
-            <Typography variant="caption" color="text.secondary" display="block">
+            <Typography variant="caption" color="text.secondary" display="block" sx={{ lineHeight: 1.2 }}>
               understood and agree to our <Link href="#" color="text.secondary" underline="always">Terms and Conditions</Link>.
             </Typography>
-            <Box mt={2} display="flex" justifyContent="center" gap={3}>
+            <Box mt={1.5} display="flex" justifyContent="center" gap={3}>
               <Link href="#" variant="caption" color="text.secondary" underline="hover">Privacy Policy</Link>
               <Link href="#" variant="caption" color="text.secondary" underline="hover">Support</Link>
             </Box>
@@ -242,9 +244,7 @@ export default function LoginPage() {
           <img 
             src="/bank_illustration.png" 
             alt="Financial Ecosystem Illustration" 
-            width={700} 
-            height={550} 
-            style={{ objectFit: 'contain' }}
+            style={{ objectFit: 'contain', maxWidth: '90%', maxHeight: '55vh' }}
           />
           
           <Typography 

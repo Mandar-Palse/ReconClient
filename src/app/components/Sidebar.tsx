@@ -142,7 +142,7 @@ const SidebarItem = ({
       <div>
         <button
           onClick={() => setOpen(!open)}
-          className="w-full flex items-center justify-between py-3 px-4 rounded hover:bg-gray-700 text-sm"
+          className="w-full flex items-center justify-between py-3 px-4 rounded hover:bg-gray-300 text-sm"
           style={{ paddingLeft }}
         >
           <div className="flex items-center gap-3 text-sm">
@@ -177,7 +177,7 @@ const SidebarItem = ({
   return (
     <Link
       href={item.href!}
-      className={`flex items-center gap-3 py-3 px-4 rounded ${pathname === item.href ? 'bg-gray-700' : 'hover:bg-gray-700'
+      className={`flex items-center gap-3 py-3 px-4 rounded ${pathname === item.href ? 'bg-gray-300' : 'hover:bg-gray-300'
         }`}
       style={{ paddingLeft }}
     >
@@ -192,7 +192,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 min-h-screen bg-gray-900 text-white flex flex-col p-6">
+    <div className="w-64 min-h-screen bg-gray-200 text-black flex flex-col p-6 border-r border-gray-300">
       <h1 className="text-1xl font-bold mb-8">Paysis Admin</h1>
 
       <nav className="flex-1 space-y-2">

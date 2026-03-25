@@ -137,7 +137,7 @@ const UploadPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[80vh] bg-gray-50/50 p-3 flex flex-col">
+    <div className="min-h-[80vh] bg-[#f8fbfc] p-3 flex flex-col">
       <div className="w-full space-y-1">
 
 
@@ -153,7 +153,7 @@ const UploadPage: React.FC = () => {
               {/* Business Date Container */}
               <div className="flex items-center space-x-4">
                 <label htmlFor="businessDate" className="text-sm font-semibold text-gray-700 flex items-center min-w-[120px]">
-                  <FiCalendar className="mr-2 text-indigo-500 text-lg" />
+                  <FiCalendar className="mr-2 text-[#0a3d75] text-lg" />
                   Business Date:
                 </label>
                 <input
@@ -161,7 +161,7 @@ const UploadPage: React.FC = () => {
                   id="businessDate"
                   value={businessDate}
                   onChange={(e) => setBusinessDate(e.target.value)}
-                  className="flex-1 px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all shadow-sm max-w-[200px]"
+                  className="flex-1 px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-[#0a3d75] focus:border-[#0a3d75] outline-none transition-all shadow-sm max-w-[200px]"
                 />
               </div>
 
@@ -169,14 +169,14 @@ const UploadPage: React.FC = () => {
               <div className="flex flex-col space-y-2">
                 <div className="flex items-center space-x-4">
                   <label className="text-sm font-semibold text-gray-700 flex items-center min-w-[100px]">
-                    <FiFileText className="mr-2 text-indigo-500 text-lg" />
+                    <FiFileText className="mr-2 text-[#0a3d75] text-lg" />
                     Select Files:
                   </label>
                   <div className="flex-1 flex items-center space-x-3 bg-gray-50 border border-gray-200 rounded-lg p-1.5 overflow-hidden">
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-md text-sm font-medium text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500 transition-colors whitespace-nowrap shadow-sm"
+                      className="px-4 py-2 bg-[#f0f4f8] hover:bg-[#e1e9f1] border border-[#cce7f0] rounded-md text-sm font-medium text-[#0a3d75] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#0a3d75] transition-colors whitespace-nowrap shadow-sm"
                     >
                       Choose Files
                     </button>
@@ -204,7 +204,7 @@ const UploadPage: React.FC = () => {
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-sm font-semibold text-gray-700">Selected Files</h3>
                   {globalStatus === 'uploading' && (
-                    <span className="text-xs font-bold text-indigo-600 flex items-center bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-100">
+                    <span className="text-xs font-bold text-[#0a3d75] flex items-center bg-[#f0f4f8] px-2.5 py-1 rounded-full border border-[#cce7f0]">
                       <AiOutlineLoading3Quarters className="animate-spin mr-1.5" /> Uploading in progress...
                     </span>
                   )}
@@ -231,7 +231,7 @@ const UploadPage: React.FC = () => {
                               </button>
                             )}
                             {cStatus === 'uploading' && (
-                              <span className="text-xs font-bold text-indigo-600 w-8 text-right">{progress}%</span>
+                              <span className="text-xs font-bold text-[#0a3d75] w-8 text-right">{progress}%</span>
                             )}
                           </div>
                         </div>
@@ -241,7 +241,7 @@ const UploadPage: React.FC = () => {
                             <div
                               className={`h-1.5 rounded-full transition-all duration-300 ${cStatus === 'success' ? 'bg-green-500' :
                                 cStatus === 'error' ? 'bg-red-500' :
-                                  'bg-indigo-600'
+                                  'bg-[#0a3d75]'
                                 }`}
                               style={{ width: `${cStatus === 'error' ? 100 : progress}%` }}
                             ></div>
@@ -290,8 +290,8 @@ const UploadPage: React.FC = () => {
                   className={`inline-flex items-center px-8 py-2.5 border border-transparent text-sm font-bold rounded-lg shadow-md text-white transition-all duration-300 ${files.length === 0
                     ? 'bg-gray-300 cursor-not-allowed shadow-none'
                     : globalStatus === 'uploading'
-                      ? 'bg-indigo-500 cursor-wait'
-                      : 'bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 focus:outline-none hover:shadow-lg hover:-translate-y-0.5'
+                      ? 'bg-[#0a3d75] cursor-wait'
+                      : 'bg-[#0a3d75] hover:bg-[#072e5a] focus:outline-none hover:shadow-lg hover:-translate-y-0.5'
                     }`}
                 >
                   {globalStatus === 'uploading' ? (
@@ -315,7 +315,7 @@ const UploadPage: React.FC = () => {
         <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden relative">
           <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100 flex items-center justify-between">
             <h2 className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Uploaded Files List</h2>
-            <span className="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+            <span className="bg-[#e1e9f1] text-[#0a3d75] text-xs font-bold px-3 py-1 rounded-full shadow-sm">
               {tableData.length} records found
             </span>
           </div>
@@ -336,7 +336,7 @@ const UploadPage: React.FC = () => {
                   <tr>
                     <td colSpan={12} className="py-16 text-center">
                       <div className="flex flex-col items-center justify-center space-y-3">
-                        <AiOutlineLoading3Quarters className="animate-spin text-4xl text-indigo-600" />
+                        <AiOutlineLoading3Quarters className="animate-spin text-4xl text-[#0a3d75]" />
                         <p className="text-gray-500 text-sm font-medium">Fetching details...</p>
                       </div>
                     </td>
@@ -349,16 +349,16 @@ const UploadPage: React.FC = () => {
                   </tr>
                 ) : (
                   tableData.map((row) => (
-                    <tr key={row.id} className="hover:bg-indigo-50/40 transition-colors group">
-                      <td className="px-5 py-4 whitespace-nowrap text-sm font-bold text-gray-900 border-l-4 border-transparent group-hover:border-indigo-500 transition-all">{row.id || '-'}</td>
+                    <tr key={row.id} className="hover:bg-[#f0f4f8] transition-colors group">
+                      <td className="px-5 py-4 whitespace-nowrap text-sm font-bold text-gray-900 border-l-4 border-transparent group-hover:border-[#0a3d75] transition-all">{row.id || '-'}</td>
                       <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-700 font-medium">{row.filedescription || '-'}</td>
-                      <td className="px-5 py-4 whitespace-nowrap text-sm text-indigo-600 font-bold">{row.filename || '-'}</td>
+                      <td className="px-5 py-4 whitespace-nowrap text-sm text-[#0a3d75] font-bold">{row.filename || '-'}</td>
                       <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">{row.businessdate || '-'}</td>
                       <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-600 font-mono bg-gray-50/30">{row.temp_tbl_count ?? '-'}</td>
                       <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-600 font-mono bg-gray-50/30">{row.data_tbl_count ?? '-'}</td>
                       <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-600 font-mono bg-gray-50/30">{row.final_tbl_count ?? '-'}</td>
                       <td className="px-5 py-4 whitespace-nowrap text-sm text-green-700 font-mono font-bold bg-green-50/30">{row.succrecord ?? '-'}</td>
-                      <td className="px-5 py-4 whitespace-nowrap text-sm text-indigo-900 font-mono font-extrabold bg-indigo-50/30">{row.totrecord ?? '-'}</td>
+                      <td className="px-5 py-4 whitespace-nowrap text-sm text-[#072e5a] font-mono font-extrabold bg-[#f0f4f8]">{row.totrecord ?? '-'}</td>
                       <td className="px-5 py-4 whitespace-nowrap">
                         {row.ReconConfirmation ? (
                           <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold bg-green-100 text-green-800 shadow-sm border border-green-200">

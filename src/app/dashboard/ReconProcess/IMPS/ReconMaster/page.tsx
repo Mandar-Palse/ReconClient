@@ -38,7 +38,7 @@ export default function IMPSReconMasterPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen p-6 bg-[#f8fbff] text-[#333]">
+    <div className="flex flex-col min-h-screen p-6 bg-[#f8fbfc] text-[#333]">
       <div className="flex items-center space-x-4 mb-8">
         <label className="font-bold text-gray-800 text-lg">Business Date:</label>
         <div className="flex items-center border border-gray-300 bg-white rounded overflow-hidden shadow-sm">
@@ -51,7 +51,7 @@ export default function IMPSReconMasterPage() {
         </div>
         <button
           onClick={handleSearch}
-          className="bg-[#2b65ba] text-white px-6 py-2 rounded font-semibold shadow hover:bg-blue-700 transition"
+          className="bg-[#0a3d75] text-white px-6 py-2 rounded font-semibold shadow hover:bg-[#072e5a] transition"
         >
           {loading ? 'Searching...' : 'Search'}
         </button>
@@ -59,14 +59,14 @@ export default function IMPSReconMasterPage() {
 
       <div className="bg-white border text-left border-gray-200 shadow-sm rounded-sm overflow-hidden mb-12">
         <table className="min-w-full border-collapse">
-          <thead className="bg-[#2b65ba] text-white">
+          <thead className="bg-[#0a3d75] text-white">
             <tr>
-              <th className="px-4 py-3 font-semibold text-sm border-r border-[#3b75ca]">Id</th>
-              <th className="px-4 py-3 font-semibold text-sm border-r border-[#3b75ca]">File Description</th>
-              <th className="px-4 py-3 font-semibold text-sm border-r border-[#3b75ca]">Filename</th>
-              <th className="px-4 py-3 font-semibold text-sm text-center border-r border-[#3b75ca]">Business Date</th>
-              <th className="px-4 py-3 font-semibold text-sm text-center border-r border-[#3b75ca]">Temp_Tbl_Count</th>
-              <th className="px-4 py-3 font-semibold text-sm text-center border-r border-[#3b75ca]">Data_Tbl_Count</th>
+              <th className="px-4 py-3 font-semibold text-sm border-r border-[#072e5a]">Id</th>
+              <th className="px-4 py-3 font-semibold text-sm border-r border-[#072e5a]">File Description</th>
+              <th className="px-4 py-3 font-semibold text-sm border-r border-[#072e5a]">Filename</th>
+              <th className="px-4 py-3 font-semibold text-sm text-center border-r border-[#072e5a]">Business Date</th>
+              <th className="px-4 py-3 font-semibold text-sm text-center border-r border-[#072e5a]">Temp_Tbl_Count</th>
+              <th className="px-4 py-3 font-semibold text-sm text-center border-r border-[#072e5a]">Data_Tbl_Count</th>
               <th className="px-4 py-3 font-semibold text-sm text-center">Succrecord</th>
             </tr>
           </thead>
@@ -100,7 +100,7 @@ export default function IMPSReconMasterPage() {
             const url = '/dashboard/ReconProcess/IMPS/ReconMaster/ProcessRecon' + (businessDate ? `?date=${businessDate}` : '');
             router.push(url);
           }}
-          className="bg-[#2b65ba] text-white text-xl font-bold px-10 py-3 rounded shadow hover:bg-blue-700 transition"
+          className="bg-[#0a3d75] text-white text-xl font-bold px-10 py-3 rounded shadow hover:bg-[#072e5a] transition"
         >
           Go to Recon
         </button>

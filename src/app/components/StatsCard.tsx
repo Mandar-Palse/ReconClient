@@ -12,7 +12,7 @@ interface StatsCardProps {
 export default function StatsCard({ title, Total, Matched, Unmatched, icon }: StatsCardProps) {
   return (
     <div className="bg-white p-6 rounded shadow flex items-center gap-4">
-      <div className="text-2xl text-blue-500">{icon}</div>
+      <div className="text-2xl text-[#0a3d75]">{icon}</div>
       <div>
         <div className="text-2xl font-bold">{title}</div>
         <div className="bg-white p-1 rounded shadow flex items-center gap-3">

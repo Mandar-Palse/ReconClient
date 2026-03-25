@@ -29,12 +29,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     //     <main className="flex-1 overflow-auto">{children}</main>
     //   </div>
     // </div>
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-[#f8fbfc]">
       <Sidebar />  {/* fixed w-64 */}
 
       <div className="flex-1 flex flex-col">
         <Navbar />
-        <main className="flex-1 overflow-auto bg-gray-50">
+        <main className="flex-1 overflow-auto bg-[#f8fbfc]">
           {/* Page content */}
           <div className="p-4">
             {children}  {/* your UploadRAWFiles page goes here */}
