@@ -1,5 +1,7 @@
 'use client';
 import React, { useState, useMemo, useEffect } from 'react';
+import { FiCalendar, FiSearch } from 'react-icons/fi';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 export interface ReportsModel {
     reportstatusid: number;
@@ -183,29 +185,36 @@ export default function IMPSReportsPage() {
            </div>
 
            {/* Main Card */}
-           <div className="bg-white shadow-sm border border-gray-200 mb-6 flex justify-between items-center p-2">
-               <div className="flex items-center space-x-6">
-                   <div className="flex items-center border border-gray-300 overflow-hidden">
-                       <div className="px-3 py-1.5 bg-gray-50 text-gray-600 border-r border-gray-300 text-sm">Date</div>
-                       <input 
-                           type="date" 
-                           className="px-3 py-1.5 outline-none text-sm min-w-[200px]"
-                           value={businessDate}
-                           onChange={(e) => setBusinessDate(e.target.value)}
-                       />
-                   </div>
+           <div className="bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 mb-6 flex justify-between items-center p-3 rounded-xl">
+               <div className="flex items-center space-x-4">
+                   <label htmlFor="businessDate" className="text-sm font-semibold text-gray-700 flex items-center min-w-[120px]">
+                       <FiCalendar className="mr-2 text-[#0a3d75] text-lg" />
+                       Business Date:
+                   </label>
+                   <input 
+                       type="date" 
+                       id="businessDate"
+                       className="flex-1 px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-[#0a3d75] focus:border-[#0a3d75] outline-none transition-all shadow-sm max-w-[200px]"
+                       value={businessDate}
+                       onChange={(e) => setBusinessDate(e.target.value)}
+                   />
                    <button 
                        onClick={handleSearch}
                        disabled={loading}
-                       className="bg-[#0a3d75] hover:bg-[#072e5a] text-white px-6 py-1.5 rounded-sm text-sm font-medium shadow min-w-[100px]"
+                       className="inline-flex items-center px-6 py-2.5 border-2 border-blue-500 text-sm font-bold rounded-lg text-white bg-blue-500 hover:bg-blue-600 hover:border-blue-600 focus:outline-none transition-all shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
                    >
-                       {loading ? 'Searching...' : 'Search'}
+                       {loading ? (
+                           <AiOutlineLoading3Quarters className="animate-spin mr-2 text-lg" />
+                       ) : (
+                           <FiSearch className="mr-2 text-lg" />
+                       )}
+                       Search
                    </button>
                </div>
                <button 
                    onClick={handleSearch}
                    title="Refresh"
-                   className="p-1.5 border border-[#0a3d75] rounded-sm text-[#0a3d75] hover:bg-[#f0f4f8]"
+                   className="p-2 border border-[#0a3d75] rounded-lg text-[#0a3d75] hover:bg-[#f0f4f8] shadow-sm transition-colors"
                >
                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
                </button>
@@ -225,81 +234,84 @@ export default function IMPSReportsPage() {
            </div>
 
            {/* Table */}
-           <div className="bg-white border text-left border-gray-200 shadow-sm overflow-x-auto">
-               <table className="min-w-full border-collapse table-fixed">
-                   <thead className="bg-[#0a3d75] text-white">
-                       {/* Top Header Row for grouping Action */}
-                       <tr>
-                           <th className="px-4 py-3 text-sm font-semibold border-r border-[#072e5a] border-b border-b-[#072e5a] text-center w-[12%]" rowSpan={2}>
-                               Report <br/> Name <span className="text-xs opacity-50 ml-1">↓↑</span>
-                           </th>
-                           <th className="px-4 py-3 text-sm font-semibold border-r border-[#072e5a] border-b border-b-[#072e5a] text-center w-[12%]" rowSpan={2}>
-                               Report <br/> Status <span className="text-xs opacity-50 ml-1">↓↑</span>
-                           </th>
-                           <th className="px-4 py-3 text-sm font-semibold border-r border-[#072e5a] border-b border-b-[#072e5a] text-center w-[12%]" rowSpan={2}>
-                               Request <br/> Date <span className="text-xs opacity-50 ml-1">↓↑</span>
-                           </th>
-                           <th className="px-4 py-3 text-sm font-semibold border-r border-[#072e5a] border-b border-b-[#072e5a] text-center w-[12%]" rowSpan={2}>
-                               Report <br/> Date <span className="text-xs opacity-50 ml-1">↓↑</span>
-                           </th>
-                           <th className="px-4 py-3 text-sm font-semibold border-r border-[#072e5a] border-b border-b-[#072e5a] text-center w-[15%]" rowSpan={2}>
-                               File <br/> Name <span className="text-xs opacity-50 ml-1">↓↑</span>
-                           </th>
-                           <th className="px-4 py-3 text-sm font-semibold border-b border-[#072e5a] text-center" colSpan={3}>
-                               Action
-                           </th>
-                       </tr>
-                       {/* Bottom Header Row for Action columns */}
-                       <tr>
-                           <th className="px-4 py-2 text-sm font-semibold border-r border-[#072e5a] text-center bg-[#0a3d75]">
-                               Voucher <span className="text-xs opacity-50 ml-1">↓↑</span>
-                           </th>
-                           <th className="px-4 py-2 text-sm font-semibold border-r border-[#072e5a] text-center bg-[#0a3d75]">
-                               Trickle Feed <span className="text-xs opacity-50 ml-1">↓↑</span>
-                           </th>
-                           <th className="px-4 py-2 text-sm font-semibold text-center bg-[#0a3d75]">
-                               Delete Request <span className="text-xs opacity-50 ml-1">↓↑</span>
-                           </th>
-                       </tr>
-                   </thead>
-                   <tbody className="divide-y divide-gray-200 text-gray-800 text-sm bg-white">
-                       {filteredData.length > 0 ? (
-                           filteredData.map((row) => (
-                               <tr key={row.reportstatusid} className="hover:bg-gray-50 border-b border-gray-200 text-center">
-                                   <td className="px-4 py-3 border-r border-gray-200">{row.reportname}</td>
-                                   <td className="px-4 py-3 border-r border-gray-200">{row.reportstatus}</td>
-                                   <td className="px-4 py-3 border-r border-gray-200">{row.reportdate}</td>
-                                   <td className="px-4 py-3 border-r border-gray-200">{row.reportedon}</td>
-                                   <td className="px-4 py-3 border-r border-gray-200">{row.FileName}</td>
-                                   <td className="px-4 py-3 border-r border-gray-200">
-                                        {row.reportfilepath ? (
-                                            <a href={row.reportfilepath} download className="text-blue-600 hover:underline">Download</a>
-                                        ) : '-'}
-                                   </td>
-                                   <td className="px-4 py-3 border-r border-gray-200">
-                                        {row.ttumreportfilepath ? (
-                                            <a href={row.ttumreportfilepath} download className="text-blue-600 hover:underline">Download</a>
-                                        ) : '-'}
-                                   </td>
-                                   <td className="px-4 py-3 border-gray-200">
-                                       <button 
-                                           onClick={() => handleDelete(row.reportstatusid)}
-                                           className="text-gray-700 hover:text-red-700 font-semibold"
-                                       >
-                                           Delete
-                                       </button>
+           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden relative">
+               <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+                   <h2 className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Reports Data List</h2>
+                   <span className="bg-[#e1e9f1] text-[#0a3d75] text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                       {filteredData.length} records found
+                   </span>
+               </div>
+               
+               <div className="overflow-x-auto">
+                   <table className="w-full text-left border-collapse table-fixed">
+                       <thead>
+                           {/* Header Row */}
+                           <tr className="bg-gray-50/50 border-b-2 border-gray-100">
+                               <th className="px-5 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-center w-[12%]">
+                                   Report Name <span className="opacity-50 ml-1">↓↑</span>
+                               </th>
+                               <th className="px-5 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-center w-[12%]">
+                                   Report Status <span className="opacity-50 ml-1">↓↑</span>
+                               </th>
+                               <th className="px-5 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-center w-[12%]">
+                                   Request Date <span className="opacity-50 ml-1">↓↑</span>
+                               </th>
+                               <th className="px-5 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-center w-[12%]">
+                                   Report Date <span className="opacity-50 ml-1">↓↑</span>
+                               </th>
+                               <th className="px-5 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-center w-[15%]">
+                                   File Name <span className="opacity-50 ml-1">↓↑</span>
+                               </th>
+                               <th className="px-5 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-center">
+                                   Voucher
+                               </th>
+                               <th className="px-5 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-center">
+                                   Trickle Feed
+                               </th>
+                               <th className="px-5 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-center">
+                                   Action
+                               </th>
+                           </tr>
+                       </thead>
+                       <tbody className="bg-white divide-y divide-gray-100">
+                           {filteredData.length > 0 ? (
+                               filteredData.map((row) => (
+                                   <tr key={row.reportstatusid} className="hover:bg-[#f0f4f8] transition-colors group text-center">
+                                       <td className="px-5 py-4 whitespace-nowrap text-sm font-bold text-gray-900 border-l-4 border-transparent group-hover:border-[#0a3d75] transition-all">{row.reportname || '-'}</td>
+                                       <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-700 font-medium">{row.reportstatus || '-'}</td>
+                                       <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">{row.reportdate || '-'}</td>
+                                       <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">{row.reportedon || '-'}</td>
+                                       <td className="px-5 py-4 whitespace-nowrap text-sm text-[#0a3d75] font-bold">{row.FileName || '-'}</td>
+                                       <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-600 font-mono bg-gray-50/30">
+                                            {row.reportfilepath ? (
+                                                <a href={row.reportfilepath} download className="text-blue-600 hover:underline">Download</a>
+                                            ) : '-'}
+                                       </td>
+                                       <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-600 font-mono bg-gray-50/30">
+                                            {row.ttumreportfilepath ? (
+                                                <a href={row.ttumreportfilepath} download className="text-blue-600 hover:underline">Download</a>
+                                            ) : '-'}
+                                       </td>
+                                       <td className="px-5 py-4 whitespace-nowrap">
+                                           <button 
+                                               onClick={() => handleDelete(row.reportstatusid)}
+                                               className="text-red-500 hover:text-red-700 font-semibold transition-colors bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-md"
+                                           >
+                                               Delete
+                                           </button>
+                                       </td>
+                                   </tr>
+                               ))
+                           ) : (
+                               <tr>
+                                   <td colSpan={8} className="text-center py-12 text-gray-500 font-medium">
+                                       {loading ? 'Searching...' : 'No records found.'}
                                    </td>
                                </tr>
-                           ))
-                       ) : (
-                           <tr>
-                               <td colSpan={8} className="text-center py-6 text-gray-400">
-                                   {loading ? 'Searching...' : 'No data Found'}
-                               </td>
-                           </tr>
-                       )}
-                   </tbody>
-               </table>
+                           )}
+                       </tbody>
+                   </table>
+               </div>
            </div>
 
            {/* Pagination placeholder matching image */}

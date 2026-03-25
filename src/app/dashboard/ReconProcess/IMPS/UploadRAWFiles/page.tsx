@@ -34,10 +34,10 @@ const UploadPage: React.FC = () => {
     try {
       const response = await axios.get("https://localhost:7193/api/upload/GetUploadedFilesList",
         {
-        params: {
-          businessDate: businessDate // or whatever your API expects
+          params: {
+            businessDate: businessDate // or whatever your API expects
+          }
         }
-      }
       );
       if (Array.isArray(response.data)) {
         setTableData(response.data);
@@ -262,7 +262,8 @@ const UploadPage: React.FC = () => {
               <button
                 onClick={handleSearch}
                 disabled={globalStatus === 'searching'}
-                className="inline-flex items-center px-6 py-2.5 border-2 border-gray-200 text-sm font-bold rounded-lg text-gray-600 bg-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 focus:outline-none transition-all shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                // className="inline-flex items-center px-6 py-2.5 border-2 border-gray-200 text-sm font-bold rounded-lg text-gray-600 bg-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 focus:outline-none transition-all shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                className="inline-flex items-center px-6 py-2.5 border-2 border-blue-500 text-sm font-bold rounded-lg text-white bg-blue-500 hover:bg-blue-600 hover:border-blue-600 focus:outline-none transition-all shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {globalStatus === 'searching' ? (
                   <AiOutlineLoading3Quarters className="animate-spin mr-2 text-lg" />
