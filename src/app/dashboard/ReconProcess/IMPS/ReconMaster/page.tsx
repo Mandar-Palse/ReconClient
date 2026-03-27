@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FiCalendar, FiSearch } from 'react-icons/fi';
+import axios from "axios";
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 export interface Fileuploaddata {
@@ -25,13 +26,31 @@ export default function IMPSReconMasterPage() {
     try {
       // If the API allows, we might pass businessDate as a query param. 
       // The user specified to call this exact API on click.
-      const response = await fetch('https://localhost:7193/api/upload/GetUploadedFilesList');
-      if (response.ok) {
-        const result = await response.json();
-        setData(result);
-      } else {
-        console.error('Failed to fetch data', response.statusText);
+      // const response = await fetch('https://localhost:7193/api/upload/GetUploadedFilesList',
+      //    {
+      //     params: {
+      //       businessDate: businessDate // or whatever your API expects
+      //     }
+      //   }
+      // );
+      const response = await axios.get("https://localhost:7193/api/upload/GetUploadedFilesList",
+        {
+          params: {
+            businessDate: businessDate // or whatever your API expects
+          }
+        }
+      );
+       if (Array.isArray(response.data)) {
+        setData(response.data);
+      } else if (response.data?.data && Array.isArray(response.data.data)) {
+        setData(response.data.data);
       }
+      // if (response.ok) {
+      //   const result = await response.json();
+      //   setData(result);
+      // } else {
+      //   console.error('Failed to fetch data', response.statusText);
+      // }
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
